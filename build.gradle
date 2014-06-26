@@ -1,0 +1,41 @@
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+buildscript {
+    repositories {
+        maven { url "http://repo.spring.io/libs-release" }
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.1.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'open-angular-workshop'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "http://repo.spring.io/libs-release" }
+    maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("com.h2database:h2")
+    testCompile("junit:junit")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}
